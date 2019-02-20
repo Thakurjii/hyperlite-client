@@ -1,8 +1,6 @@
-from .collection import Collection
-
 
 class Object(object):
-    def __init__(self, data: dict, collection: Collection):
+    def __init__(self, data: dict, collection):
         self.collection = collection
         for key, value in data.items():
             self.__dict__[key] = value
