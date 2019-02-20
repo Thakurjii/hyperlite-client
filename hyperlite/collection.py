@@ -25,6 +25,6 @@ class Collection(object):
                 "email": "sohel@gmail.com",
             }, self)
         ]
-        cur = Cursor(total_page=20, data=data)
+        cur = Cursor(total_page=1, data=data)
 
         return cur
