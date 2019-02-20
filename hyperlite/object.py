@@ -5,8 +5,6 @@ class Object(object):
         for key, value in data.items():
             self.__dict__[key] = value
 
-        print(self.__dict__)
-
     def __str__(self):
         return str(self.__dict__)
 

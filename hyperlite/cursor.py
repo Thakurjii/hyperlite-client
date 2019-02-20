@@ -15,4 +15,4 @@ class Cursor(object):
         return self.data
 
     def __str__(self):
-        return self.data
+        return str(self.data)
