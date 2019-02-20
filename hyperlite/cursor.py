@@ -1,4 +1,4 @@
-class Cursor:
+class Cursor(object):
     def __init__(self, total_page, data):
         self.total_page = total_page
         self.curr_page = 0

@@ -1,11 +1,13 @@
-from hyperlite.collection import Collection
+from .collection import Collection
 
 
-class Object:
+class Object(object):
     def __init__(self, data: dict, collection: Collection):
         self.collection = collection
         for key, value in data.items():
             self.__dict__[key] = value
+
+        print(self.__dict__)
 
     def __str__(self):
         return str(self.__dict__)
@@ -16,10 +18,3 @@ class Object:
     def save(self):
         # Logic to save the self.__dict__ to database
         pass
-
-
-if __name__ == '__main__':
-    obj = Object({
-        "name": "Anikesh",
-        "email": "anikesh@gmail.com"
-    })
