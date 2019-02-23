@@ -1,11 +1,16 @@
 from .object import Object
 from .cursor import Cursor
+from .event import Event
 
 
 class Collection(object):
     def __init__(self, name: str):
         self.name = name
         self.objects: Cursor
+
+    def insert(self, obj):
+        with open("P:\\Github\\AnonGrp\\hyperlite-client\\dummy.json") as file:
+            Event.emmit('request', file.read())
 
     def get_all(self) -> Cursor:
         # Logic to fetch add objects of this collection object
