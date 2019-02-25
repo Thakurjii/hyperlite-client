@@ -24,27 +24,57 @@ class Connection(socket.socket):
         Event.emmit("response", response)
 
 
-def generateInsertRequestSchema() -> json:
-    return json.loads("""
-    Insert: {
-        "meta": {
-            "Database": "db-1",
-            "Collection": "col-1"
+def generateInsertRequestSchema():
+    return json.loads('''
+    {
+        "Insert": {
+            "meta": {
+                "Database": "db-1",
+                "Collection": "col-1"
+            },
+            "data": {}
         },
-        "data": None
-    },
-    "type": "Request"
-    }    
-    """)
+        "type": "Request"
+    }
+    ''')
 
 
-def generateReadRequestSchema() -> json:
-    return json.loads("""
-    Read: {
-        "meta": {
-            "Database": "db-1",
-            "Collection": "col-1",
-            "Query": None
+def generateReadRequestSchema():
+    return json.loads('''
+    {
+        "Read": {
+            "meta": {
+                "Database": "db-1",
+                "Collection": "col-1"
+            }
+    }
+    ''')
+
+
+def generateUpdateRequestSchema():
+    return json.load('''
+    {
+        "Update": {
+            "meta": {
+                "Database": "db-1",
+                "Collection": "col-1",
+            },
+            "data":{}
         }
     }
-    """)
+    ''')
+
+
+def generateDeleteRequestSchema():
+    return json.loads('''
+    {
+        "Delete": {
+            "meta": {
+                "Database": "db-1",
+                "Collection": "col-1",
+                "Object_Id": "db-1.col-1.1"
+            },
+            "data":{}
+        }
+    }
+    ''')
