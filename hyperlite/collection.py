@@ -1,6 +1,8 @@
+import json
 from .object import Object
 from .cursor import Cursor
 from .event import Event
+from . import generateInsertRequestSchema,generateReadRequestSchema
 
 
 class Collection(object):
@@ -9,8 +11,14 @@ class Collection(object):
         self.objects: Cursor
 
     def insert(self, obj):
-        with open("P:\\Github\\AnonGrp\\hyperlite-client\\dummy.json") as file:
-            Event.emmit('request', file.read())
+        insertSchema = generateInsertRequestSchema()
+        insertSchema["Insert"]["data"] = obj
+        Event.emmit('request', json.dumps(insertSchema))
+
+    def execHyperQl(self, query):
+        readSchema = generateReadRequestSchema()
+        readSchema["Read"]["meta"]["Query"] = query
+        Event.emmit('request', json.dumps(readSchema))
 
     def get_all(self) -> Cursor:
         # Logic to fetch add objects of this collection object

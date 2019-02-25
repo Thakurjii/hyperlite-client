@@ -3,19 +3,24 @@ from hyperlite import Connection
 from hyperlite.event import Event
 from code import InteractiveConsole
 
+connection = None
+database = None
+console = InteractiveConsole(globals())
+
 
 def onResponse(response: str):
     print(response)
+
+
+def onRequest(request: str):
+    if connection is not None:
+        connection.sendRequest(request)
 
 
 if __name__ == '__main__':
     connection = Connection(host='localhost', port=9898)
     Event.on('response', onResponse)
     if connection.connect():
-        console = InteractiveConsole(globals())
         console.interact("Welcome to hyperShell", "Bye!")
     else:
         print("Server is not running")
-    # print(usr_col.get_all().get())
-    # for obj in usr_col.get_all().get():
-    #     print(obj)
