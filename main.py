@@ -4,7 +4,6 @@ from hyperlite.event import Event
 from code import InteractiveConsole
 
 connection = None
-database = None
 console = InteractiveConsole(globals())
 
 

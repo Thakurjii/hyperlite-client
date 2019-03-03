@@ -2,6 +2,8 @@ import socket
 import json
 from hyperlite.event import Event
 
+DATABASE = "test.db"
+
 
 class Connection(socket.socket):
     def __init__(self, host, port):
@@ -31,8 +33,7 @@ def generateInsertRequestSchema():
             "meta": {
                 "Database": "db-1",
                 "Collection": "col-1"
-            },
-            "data": {}
+            }
         },
         "type": "Request"
     }
@@ -47,6 +48,8 @@ def generateReadRequestSchema():
                 "Database": "db-1",
                 "Collection": "col-1"
             }
+        },
+        "type": "Request"
     }
     ''')
 
@@ -58,9 +61,9 @@ def generateUpdateRequestSchema():
             "meta": {
                 "Database": "db-1",
                 "Collection": "col-1",
-            },
-            "data":{}
-        }
+            }
+        },
+        "type": "Request"
     }
     ''')
 
@@ -73,8 +76,8 @@ def generateDeleteRequestSchema():
                 "Database": "db-1",
                 "Collection": "col-1",
                 "Object_Id": "db-1.col-1.1"
-            },
-            "data":{}
-        }
+            }
+        },
+        "type": "Request"
     }
     ''')
