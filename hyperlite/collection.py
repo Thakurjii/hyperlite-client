@@ -21,7 +21,6 @@ class Collection(object):
     def execHyperQl(self, query):
         readSchema = generateReadRequestSchema()
         readSchema["Read"]["meta"]["Query"] = query
-        readSchema["Read"]["data"] = {}
         readSchema["Read"]["meta"]["Database"] = DATABASE
         readSchema["Read"]["meta"]["Collection"] = self.name
         Event.emmit('request', json.dumps(readSchema))
@@ -42,8 +41,7 @@ class Collection(object):
 
     def readById(self, objectId: str):
         readSchema = generateReadByIdRequestSchema()
-        readSchema["Read"]["meta"]["Query"] = None
-        readSchema["Read"]["meta"]["Database"] = DATABASE
-        readSchema["Read"]["meta"]["Collection"] = self.name
-        readSchema["Read"]["id"] = objectId
+        readSchema["ReadById"]["meta"]["Database"] = DATABASE
+        readSchema["ReadById"]["meta"]["Collection"] = self.name
+        readSchema["ReadById"]["id"] = objectId
         Event.emmit('request', json.dumps(readSchema))

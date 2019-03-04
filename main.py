@@ -26,7 +26,8 @@ if __name__ == '__main__':
     }
     connection.connect()
     col = Collection('users')
-    col.insert(data)
+    # col.insert(data)
+    # col.readById('cfc21e92fde3418791eafbbb3038b363')
     # query = """
     #         name = it,
     #         email &eq "anikeshpatel4@gmail.com",
