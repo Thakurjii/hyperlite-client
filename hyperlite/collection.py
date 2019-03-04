@@ -21,13 +21,13 @@ class Collection(object):
     def execHyperQl(self, query):
         readSchema = generateReadRequestSchema()
         readSchema["Read"]["meta"]["Query"] = query
-        readSchema["Insert"]["meta"]["Database"] = DATABASE
-        readSchema["Insert"]["meta"]["Collection"] = self.name
+        readSchema["Read"]["meta"]["Database"] = DATABASE
+        readSchema["Read"]["meta"]["Collection"] = self.name
         Event.emmit('request', json.dumps(readSchema))
 
     def readAll(self):
         readSchema = generateReadRequestSchema()
         readSchema["Read"]["meta"]["Query"] = None
-        readSchema["Insert"]["meta"]["Database"] = DATABASE
-        readSchema["Insert"]["meta"]["Collection"] = self.name
+        readSchema["Read"]["meta"]["Database"] = DATABASE
+        readSchema["Read"]["meta"]["Collection"] = self.name
         Event.emmit('request', json.dumps(readSchema))
