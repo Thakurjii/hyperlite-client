@@ -25,14 +25,14 @@ if __name__ == '__main__':
         "password": "123123"
     }
     connection.connect()
-    col = Collection('online')
-    # col.insert(data)
-    query = """
-            name = it,
-            email &eq "anikeshpatel4@gmail.com",
-            password &eq "123123"
-            """
-    col.execHyperQl(query)
+    col = Collection('users')
+    col.insert(data)
+    # query = """
+    #         name = it,
+    #         email &eq "anikeshpatel4@gmail.com",
+    #         password &eq "123123"
+    #         """
+    # col.execHyperQl(query)
     # if connection.connect():
     #     console.interact("Welcome to hyperShell", "Bye!")
     # else:

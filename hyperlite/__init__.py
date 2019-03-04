@@ -54,6 +54,20 @@ def generateReadRequestSchema():
     ''')
 
 
+def generateReadOneRequestSchema():
+    return json.loads('''
+    {
+        "ReadOne": {
+            "meta": {
+                "Database": "db-1",
+                "Collection": "col-1"
+            }
+        },
+        "type": "Request"
+    }
+    ''')
+
+
 def generateUpdateRequestSchema():
     return json.load('''
     {
@@ -66,6 +80,20 @@ def generateUpdateRequestSchema():
         "type": "Request"
     }
     ''')
+
+
+def generateReadByIdRequestSchema():
+    return json.loads('''
+        {
+            "ReadById": {
+                "meta": {
+                    "Database": "db-1",
+                    "Collection": "col-1"
+                }
+            },
+            "type": "Request"
+        }
+        ''')
 
 
 def generateDeleteRequestSchema():

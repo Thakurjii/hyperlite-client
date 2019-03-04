@@ -2,7 +2,7 @@ import json
 from .object import Object
 from .cursor import Cursor
 from .event import Event
-from . import generateInsertRequestSchema,generateReadRequestSchema
+from . import generateReadRequestSchema, generateReadByIdRequestSchema, generateReadOneRequestSchema, generateInsertRequestSchema, generateDeleteRequestSchema, generateUpdateRequestSchema
 from . import DATABASE
 
 
@@ -31,4 +31,19 @@ class Collection(object):
         readSchema["Read"]["meta"]["Query"] = None
         readSchema["Read"]["meta"]["Database"] = DATABASE
         readSchema["Read"]["meta"]["Collection"] = self.name
+        Event.emmit('request', json.dumps(readSchema))
+
+    def readOne(self):
+        readSchema = generateReadOneRequestSchema()
+        readSchema["ReadOne"]["meta"]["Query"] = None
+        readSchema["ReadOne"]["meta"]["Database"] = DATABASE
+        readSchema["ReadOne"]["meta"]["Collection"] = self.name
+        Event.emmit('request', json.dumps(readSchema))
+
+    def readById(self, objectId: str):
+        readSchema = generateReadByIdRequestSchema()
+        readSchema["Read"]["meta"]["Query"] = None
+        readSchema["Read"]["meta"]["Database"] = DATABASE
+        readSchema["Read"]["meta"]["Collection"] = self.name
+        readSchema["Read"]["id"] = objectId
         Event.emmit('request', json.dumps(readSchema))
