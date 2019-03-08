@@ -43,5 +43,5 @@ class Collection(object):
         readSchema = generateReadByIdRequestSchema()
         readSchema["ReadById"]["meta"]["Database"] = DATABASE
         readSchema["ReadById"]["meta"]["Collection"] = self.name
-        readSchema["ReadById"]["id"] = objectId
+        readSchema["ReadById"]["meta"]["id"] = objectId
         Event.emmit('request', json.dumps(readSchema))
