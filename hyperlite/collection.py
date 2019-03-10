@@ -27,14 +27,14 @@ class Collection(object):
 
     def readAll(self):
         readSchema = generateReadRequestSchema()
-        readSchema["Read"]["meta"]["Query"] = None
+        readSchema["Read"]["meta"]["Query"] = "*"
         readSchema["Read"]["meta"]["Database"] = DATABASE
         readSchema["Read"]["meta"]["Collection"] = self.name
         Event.emmit('request', json.dumps(readSchema))
 
-    def readOne(self):
+    def readOne(self, query="*"):
         readSchema = generateReadOneRequestSchema()
-        readSchema["ReadOne"]["meta"]["Query"] = None
+        readSchema["ReadOne"]["meta"]["Query"] = query
         readSchema["ReadOne"]["meta"]["Database"] = DATABASE
         readSchema["ReadOne"]["meta"]["Collection"] = self.name
         Event.emmit('request', json.dumps(readSchema))

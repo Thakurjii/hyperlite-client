@@ -17,23 +17,34 @@ def onRequest(request: str):
 
 
 if __name__ == '__main__':
-    connection = Connection(host='localhost', port=9898)
+    connection = Connection(host='localhost', port=8989)
     Event.on('response', onResponse)
     data = {
-        "name": "Anikesh patel",
-        "email": "anikeshpatel4@gmail.com",
-        "password": "123123"
+        "name": "Anikesh Patel",
+        "email": "anikeshpatel@gmail.com",
+        "password": "123123",
+        "age": 19,
+        "addr": {
+            "country": "India",
+            "geo": {
+                "lat": "-105.45443",
+                "lon": "182.43445"
+            }
+        }
     }
     connection.connect()
     col = Collection('users')
+    # for i in range(100):
+    #     col.insert(data)
     col.insert(data)
-    # col.readById('cfc21e92fde3418791eafbbb3038b363')
+    # col.readById('8cf8438062554a8487ce64bef8189ea1')
     query = """
             name,
-            email &eq "anikeshpatel4@gmail.com",
-            password &eq "123123"
+            addr.geo.lat &eq "-105.45443"
             """
     col.execHyperQl(query)
+    # col.readAll()
+    # col.readOne(query)
     # if connection.connect():
     #     console.interact("Welcome to hyperShell", "Bye!")
     # else:
