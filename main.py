@@ -19,30 +19,36 @@ def onRequest(request: str):
 if __name__ == '__main__':
     connection = Connection(host='localhost', port=8989)
     Event.on('response', onResponse)
-    data = {
-        "name": "Anikesh Patel",
-        "email": "anikeshpatel@gmail.com",
-        "password": "123123",
-        "age": 19,
-        "addr": {
-            "country": "India",
-            "geo": {
-                "lat": "-105.45443",
-                "lon": "182.43445"
-            }
-        }
+    author = {
+        "name": "Gaurav Thakur",
+        "email": "email@gmail.com"
+    }
+    book = {
+        "title": "A book",
+        "authors": [
+            "42f3338d7e494c49acde37cd35ee8c90",
+            "b3ca0816cf7a418896f494a9016bc16d"
+        ]
     }
     connection.connect()
-    col = Collection('users')
+    authors = Collection('authors')
+    books = Collection('books')
+    books.populate({
+        "fieldRef": "authors",
+        "to": "authors"
+    })
     # for i in range(100):
     #     col.insert(data)
-    col.insert(data)
-    # col.readById('8cf8438062554a8487ce64bef8189ea1')
+    # authors.insert(author)
+    # books.insert(book)
+    # books.readAll()
+    # col.readById('07a24a4b3ed246eb85613b9100d3daa5') # 42f3338d7e494c49acde37cd35ee8c90 # b3ca0816cf7a418896f494a9016bc16d
+    # Book id - 6809f40002114f4490601b668d36a340
     query = """
             name,
             addr.geo.lat &eq "-105.45443"
             """
-    col.execHyperQl(query)
+    # col.execHyperQl(query)
     # col.readAll()
     # col.readOne(query)
     # if connection.connect():

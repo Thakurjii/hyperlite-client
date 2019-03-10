@@ -45,3 +45,11 @@ class Collection(object):
         readSchema["ReadById"]["meta"]["Collection"] = self.name
         readSchema["ReadById"]["meta"]["id"] = objectId
         Event.emmit('request', json.dumps(readSchema))
+
+    def populate(self, obj: dict):
+        if 'fieldRef' not in obj:
+            raise ValueError("'from' is required")
+        if 'to' not in obj:
+            raise ValueError("'to' is required")
+        obj.update({'type': 'Pipeline', 'Database': DATABASE, 'Collection': self.name})
+        Event.emmit('request', json.dumps(obj))
