@@ -61,3 +61,10 @@ class Collection(object):
         updateSchema["Update"]["meta"]["Collection"] = self.name
         updateSchema["Update"]["meta"]["Query"] = query
         Event.emmit('request', json.dumps(updateSchema))
+
+    def delete(self, obj_id: str):
+        deleteSchema = generateDeleteRequestSchema()
+        deleteSchema["Delete"]["meta"]["Database"] = DATABASE
+        deleteSchema["Delete"]["meta"]["Collection"] = self.name
+        deleteSchema["Delete"]["meta"]["Object_Id"] = obj_id
+        Event.emmit('request', json.dumps(deleteSchema))

@@ -17,7 +17,7 @@ def onRequest(request: str):
 
 
 if __name__ == '__main__':
-    connection = Connection(host='localhost', port=5454)
+    connection = Connection(host='localhost', port=8989)
     Event.on('response', onResponse)
     author = {
         "name": "Gaurav Thakur",
@@ -39,7 +39,9 @@ if __name__ == '__main__':
     # })
     # authors.readAll()
     # authors.insert(author)
-    authors.update({"age": {"op": {"&div": 2}}}, 'name &eq "Gaurav Thakur"')
+    # authors.update({"age": {"op": {"&div": 2}}}, 'name &eq "Gaurav Thakur"')
+    authors.readAll()
+    authors.delete('b96113a7a76e478dae8ab37c8141f9c5')
     authors.readAll()
     # for i in range(100):
     #     col.insert(data)
