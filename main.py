@@ -38,12 +38,12 @@ if __name__ == '__main__':
     #     "to": "authors"
     # })
     # authors.insert(author)
-    authors.update( {"name":"Anikesh Patel"}, "name")
+    authors.update({"name": "Anikesh Patel"}, "name")
     # for i in range(100):
     #     col.insert(data)
     # authors.insert(author)
     # books.insert(book)
-    books.readAll()
+    # books.readAll()
     # col.readById('07a24a4b3ed246eb85613b9100d3daa5') # 42f3338d7e494c49acde37cd35ee8c90 # b3ca0816cf7a418896f494a9016bc16d
     # Book id - 6809f40002114f4490601b668d36a340
     # query = """

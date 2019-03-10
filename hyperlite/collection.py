@@ -59,5 +59,5 @@ class Collection(object):
         updateSchema["Update"]["data"] = obj
         updateSchema["Update"]["meta"]["Database"] = DATABASE
         updateSchema["Update"]["meta"]["Collection"] = self.name
-        updateSchema["Update"]["meta"]["Query"] = self.query
+        updateSchema["Update"]["meta"]["Query"] = query
         Event.emmit('request', json.dumps(updateSchema))

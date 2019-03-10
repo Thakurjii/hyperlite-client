@@ -74,7 +74,7 @@ def generateUpdateRequestSchema():
         "Update": {
             "meta": {
                 "Database": "db-1",
-                "Collection": "col-1",
+                "Collection": "col-1"
             }
         },
         "type": "Request"
