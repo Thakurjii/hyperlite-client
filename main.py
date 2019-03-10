@@ -32,13 +32,15 @@ if __name__ == '__main__':
     # }
     connection.connect()
     authors = Collection('authors')
-    # books = Collection('books')
+    books = Collection('books')
     # books.populate({
     #     "fieldRef": "authors",
     #     "to": "authors"
     # })
+    # authors.readAll()
     # authors.insert(author)
-    authors.update({"name": "Anikesh Patel"}, "name")
+    authors.update({"age": {"op": {"&inc": 2}}}, '_id &eq "42f3338d7e494c49acde37cd35ee8c90"')
+    authors.readAll()
     # for i in range(100):
     #     col.insert(data)
     # authors.insert(author)
