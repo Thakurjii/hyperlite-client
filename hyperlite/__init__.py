@@ -69,7 +69,7 @@ def generateReadOneRequestSchema():
 
 
 def generateUpdateRequestSchema():
-    return json.load('''
+    return json.loads('''
     {
         "Update": {
             "meta": {

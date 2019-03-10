@@ -2,7 +2,7 @@ import json
 from .object import Object
 from .cursor import Cursor
 from .event import Event
-from . import generateReadRequestSchema, generateReadByIdRequestSchema, generateReadOneRequestSchema, generateInsertRequestSchema, generateDeleteRequestSchema, generateUpdateRequestSchema
+from . import generateReadRequestSchema, generateReadByIdRequestSchema, generateReadOneRequestSchema, generateInsertRequestSchema, generateDeleteRequestSchema, generateUpdateRequestSchema, generateUpdateRequestSchema
 from . import DATABASE
 
 
@@ -53,3 +53,11 @@ class Collection(object):
             raise ValueError("'to' is required")
         obj.update({'type': 'Pipeline', 'Database': DATABASE, 'Collection': self.name})
         Event.emmit('request', json.dumps(obj))
+
+    def update(self, obj: dict, query="*"):
+        updateSchema = generateUpdateRequestSchema()
+        updateSchema["Update"]["data"] = obj
+        updateSchema["Update"]["meta"]["Database"] = DATABASE
+        updateSchema["Update"]["meta"]["Collection"] = self.name
+        updateSchema["Update"]["meta"]["Query"] = self.query
+        Event.emmit('request', json.dumps(updateSchema))
