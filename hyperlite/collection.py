@@ -70,8 +70,20 @@ class Collection(object):
         Event.emmit('request', json.dumps(deleteSchema))
 
     def insertAll(self, objects: list):
-        insertAllSchema = generateInsertAllRequestSchema()
-        insertAllSchema["InsertAll"]["data"] = objects
-        insertAllSchema["InsertAll"]["meta"]["Database"] = DATABASE
-        insertAllSchema["InsertAll"]["meta"]["Collection"] = self.name
-        Event.emmit('request', json.dumps(insertAllSchema))
+        isValid = False
+        if type(objects) is list:
+            for hy_object in objects:
+                if type(hy_object) is dict:
+                    isValid = True
+                else:
+                    isValid = False
+                    break
+        
+        if isValid:
+            insertAllSchema = generateInsertAllRequestSchema()
+            insertAllSchema["InsertAll"]["data"] = objects
+            insertAllSchema["InsertAll"]["meta"]["Database"] = DATABASE
+            insertAllSchema["InsertAll"]["meta"]["Collection"] = self.name
+            Event.emmit('request', json.dumps(insertAllSchema))
+        else:
+            print("Invalid data for Insertion.")
