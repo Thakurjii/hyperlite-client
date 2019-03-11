@@ -56,6 +56,18 @@ def generateInsertRequestSchema():
     }
     ''')
 
+def generateInsertAllRequestSchema():
+    return json.loads('''
+    {
+        "InsertAll": {
+            "meta": {
+                "Database": "db-1",
+                "Collection": "col-1"
+            }
+        },
+        "type": "Request"
+    }
+    ''')
 
 def generateReadRequestSchema():
     return json.loads('''

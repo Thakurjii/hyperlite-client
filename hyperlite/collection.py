@@ -2,7 +2,7 @@ import json
 from .object import Object
 from .cursor import Cursor
 from .event import Event
-from . import generateReadRequestSchema, generateReadByIdRequestSchema, generateReadOneRequestSchema, generateInsertRequestSchema, generateDeleteRequestSchema, generateUpdateRequestSchema, generateUpdateRequestSchema
+from . import generateReadRequestSchema, generateReadByIdRequestSchema, generateReadOneRequestSchema, generateInsertRequestSchema, generateDeleteRequestSchema, generateUpdateRequestSchema, generateUpdateRequestSchema, generateInsertAllRequestSchema
 from . import DATABASE
 
 
@@ -68,3 +68,10 @@ class Collection(object):
         deleteSchema["Delete"]["meta"]["Collection"] = self.name
         deleteSchema["Delete"]["meta"]["Object_Id"] = obj_id
         Event.emmit('request', json.dumps(deleteSchema))
+
+    def insertAll(self, objects: list):
+        insertAllSchema = generateInsertAllRequestSchema()
+        insertAllSchema["InsertAll"]["data"] = objects
+        insertAllSchema["InsertAll"]["meta"]["Database"] = DATABASE
+        insertAllSchema["InsertAll"]["meta"]["Collection"] = self.name
+        Event.emmit('request', json.dumps(insertAllSchema))

@@ -26,6 +26,7 @@ if __name__ == '__main__':
     showDatabases()
     showCollections('test.db')
     cities = Collection('cities')
+    cities.insert({"name":"indore"})
     # cities.execHyperQl("city")
     # cities.execHyperQl("*, city &eq \"KETCHIKAN\"")
     # cities.execHyperQl("*, city &eq \"KETCHIKAN\", state &eq \"AK\", $limit: 1, $skip: 1")
