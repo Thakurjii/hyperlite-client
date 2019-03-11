@@ -86,4 +86,4 @@ class Collection(object):
             insertAllSchema["InsertAll"]["meta"]["Collection"] = self.name
             Event.emmit('request', json.dumps(insertAllSchema))
         else:
-            print("Invalid data for Insertion.")
+            raise ValueError("Invalid data for Insertion.")
