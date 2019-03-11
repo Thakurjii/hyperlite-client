@@ -22,8 +22,25 @@ class Connection(socket.socket):
 
     def sendRequest(self, data):
         super().send(str(data).encode("UTF-8"))
-        response = super().recv(1024).decode('UTF-8')
+        response = super().recv(1024*1024*1024).decode('UTF-8')
         Event.emmit("response", response)
+
+
+def showDatabases():
+    reqSchema = {
+        "type": "Provider",
+        "show": "Databases"
+    }
+    Event.emmit("request", json.dumps(reqSchema))
+
+
+def showCollections(database: str):
+    reqSchema = {
+        "type": "Provider",
+        "show": "Collections",
+        "of": database
+    }
+    Event.emmit("request", json.dumps(reqSchema))
 
 
 def generateInsertRequestSchema():
